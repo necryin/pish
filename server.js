@@ -35,7 +35,7 @@ setInterval(function () {
     Queue.findOne({}, {}, { sort: { 'created_at' : 1 } }, function(err, job) {
         if (err) logger.log('queue findOne error: ' + err);
         if (job) {
-            logger.log("job");
+            logger.log("job start");
              vk.sendNotification(job.ids, job.text, function (err) {
                 if (err) logger.log('fail to send notifications: ' + err);
                 logger.flog("SENDED: " + job.ids + "   -   " + job.text);
@@ -46,7 +46,7 @@ setInterval(function () {
 }, config.api_delay);
 
 http.createServer(function (request, response) {
-    if (request.url === "/send" && request.method == 'POST') {
+    if (request.url === "/send" && request.method === 'POST') {
         var body = '';
         request.on('data', function (data) {
             body += data;
