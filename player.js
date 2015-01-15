@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
 
 var Player = new Schema({
     vk_id: { type: Number, unique: true },
-    first_name: { type: String, required: true}
+    first_name: { type: String, required: true, index: true}
 });
 
 module.exports = mongoose.model('Player', Player);
